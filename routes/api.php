@@ -13,5 +13,6 @@
 
 /* Route Users */
 Route::resource('heroes', 'HeroController', ['only' => ['index', 'show']]);
+Route::resource('ranking', 'RankingController', ['only' => ['index', 'store']]);
 
 Route::post('oauth/token', '\Laravel\Passport\Http\Controllers\AccessTokenController@issueToken');

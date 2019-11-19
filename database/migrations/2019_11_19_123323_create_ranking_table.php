@@ -13,11 +13,11 @@ class CreateRankingTable extends Migration
      */
     public function up()
     {
-        Schema::create('ranking', function (Blueprint $table) {
+        Schema::create('rankings', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('hero_id')->unsigned();
-            $table->integer('like');
-            $table->integer('dont_like');
+            $table->integer('like')->default(0);
+            $table->integer('dont_like')->default(0);
             $table->string('ip_address');
             $table->date('created_at');
 
@@ -32,6 +32,6 @@ class CreateRankingTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ranking');
+        Schema::dropIfExists('rankings');
     }
 }
