@@ -15,6 +15,22 @@ class HeroController extends ApiController
 
     public function index()
     {
-        return $this->showAll($this->paginate(Hero::orderBy('name'))->get());
+        $perPage = $this->getConfigPage()->perPage;
+        $data = Hero::orderBy('name')->paginate($perPage);
+        $optionsPaginate = $this->getOptionsPaginate($data);
+
+        foreach($data as $item){
+			if(!empty($transformer = $item->transformer)){
+				$metadata = $this->transformData($item, $transformer);
+				$resp[] = $metadata['data'];
+			}
+		}
+
+        $result = [
+			'data' => $resp,
+			'optionsPaginate' => $optionsPaginate
+		];
+
+        return $this->successResponse($result, 200);
     }
 }

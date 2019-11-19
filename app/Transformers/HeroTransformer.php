@@ -18,7 +18,8 @@ class HeroTransformer extends TransformerAbstract
             'id' => $hero->id,
             'name' => $hero->name,
             'picture' => $hero->picture,
-            'info' => $hero->description
+            'info' => $hero->description,
+            'publisher' => $hero->publisher
         ];
     }
 }

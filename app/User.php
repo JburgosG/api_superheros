@@ -2,7 +2,6 @@
 
 namespace App;
 
-use App\Contact;
 use Laravel\Passport\HasApiTokens;
 use App\Transformers\UserTransformer;
 use Illuminate\Notifications\Notifiable;

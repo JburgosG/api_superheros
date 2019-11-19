@@ -49,7 +49,7 @@ trait ApiResponser
     
     protected function paginate($data)
     {
-        $options = $this->getConfigPage();        
+        $options = $this->getConfigPage();
         return $data->offset($options->start)->limit($options->perPage);
     }
 
@@ -65,6 +65,19 @@ trait ApiResponser
             'start' => $start
         ];
     }
+
+    public function getOptionsPaginate($results)
+	{
+		return [
+			'hasMorePages' => $results->hasMorePages(),
+			'currentPage' => $results->currentPage(),			
+			'firstItem' => $results->firstItem(),
+			'lastItem' => $results->lastItem(),
+			'lastPage' => $results->lastPage(),
+			'perPage' => $results->perPage(),
+			'total' => $results->total(),
+		];
+	}
 
     protected function page()
     {   
