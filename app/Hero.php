@@ -2,11 +2,14 @@
 
 namespace App;
 
+use App\Transformers\HeroTransformer;
 use Illuminate\Database\Eloquent\Model;
 
 class Hero extends Model
 {
     public $timestamps = true;
+
+    public $transformer = HeroTransformer::class;
 
     protected $fillable = [
         'name',

@@ -14,6 +14,6 @@ use Illuminate\Http\Request;
 */
 
 /* Route Users */
-Route::resource('user', 'UserController', ['only' => ['show', 'store', 'update']]);
+Route::resource('heroes', 'HeroController', ['only' => ['index', 'show']]);
 
 Route::post('oauth/token', '\Laravel\Passport\Http\Controllers\AccessTokenController@issueToken');

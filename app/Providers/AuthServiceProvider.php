@@ -30,9 +30,5 @@ class AuthServiceProvider extends ServiceProvider
         Passport::routes();
         Passport::tokensExpireIn(Carbon::now()->addYear());
         Passport::refreshTokensExpireIn(Carbon::now()->addYear());
-
-        Passport::tokensCan([
-            'all' => 'El usuario debe estar logueado en la app.'
-        ]);
     }
 }
