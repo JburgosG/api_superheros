@@ -15,8 +15,7 @@ class User extends Authenticatable
     public $transformer = UserTransformer::class;
 
     protected $fillable = [
-        'name', 
-        'photo',
+        'name',
         'email', 
         'password'
     ];
