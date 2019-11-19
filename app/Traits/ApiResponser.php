@@ -66,19 +66,6 @@ trait ApiResponser
         ];
     }
 
-    public function getOptionsPaginate($results)
-	{
-		return [
-			'hasMorePages' => $results->hasMorePages(),
-			'currentPage' => $results->currentPage(),			
-			'firstItem' => $results->firstItem(),
-			'lastItem' => $results->lastItem(),
-			'lastPage' => $results->lastPage(),
-			'perPage' => $results->perPage(),
-			'total' => $results->total(),
-		];
-	}
-
     protected function page()
     {   
         $page = 1;
