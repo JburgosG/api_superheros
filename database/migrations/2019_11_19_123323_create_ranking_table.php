@@ -16,8 +16,8 @@ class CreateRankingTable extends Migration
         Schema::create('rankings', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('hero_id')->unsigned();
-            $table->integer('like')->default(0);
-            $table->integer('dont_like')->default(0);
+            $table->integer('likes')->default(0);
+            $table->integer('dont_likes')->default(0);
             $table->string('ip_address');
             $table->date('created_at');
 

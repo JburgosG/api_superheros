@@ -3,7 +3,6 @@
 namespace App;
 
 use Laravel\Passport\HasApiTokens;
-use App\Transformers\UserTransformer;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 

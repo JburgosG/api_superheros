@@ -15,24 +15,31 @@ class RankingController extends ApiController
 
     public function index()
     {
+        $data = Ranking::GetRanking()->orderBy('likes', 'desc');
+        $top = $this->paginate($data)->get();
 
+        return $this->showAll($top);
     }
 
     public function store(Request $request)
     {
-        $actions = ['like', 'dont_like'];
+        $actions = ['add', 'remove'];
+        $types = ['likes', 'dont_likes'];
 
         $rules = [
+            'type' => 'required',
             'action' => 'required',
             'hero_id' => 'required|integer|exists:heroes,id'
         ];
 
         Validator::validate($request->all(), $rules);
+
+        $type = $request->type;
         $action = $request->action;
         $server = $request->server();
         $ip = $server['REMOTE_ADDR'];
 
-        if(!in_array($action, $actions)){
+        if(!in_array($action, $actions) || !in_array($type, $types)){
             return $this->errorResponse('The action is not defined.', 400);
         }
 
@@ -42,16 +49,18 @@ class RankingController extends ApiController
         ];
         
         Ranking::where($where)->delete();
-        
-        $ranking = new Ranking();
 
-        $ranking->fill(array_merge($where, [
-            $action => 1,
-            'created_at' => date('Y-m-d H:i:s')
-        ]));
-        
-        if(!$ranking->save()){
-            return $this->errorResponse('Oops, an error occurred, try again later.', 400);
+        if($action == 'add'){
+            $ranking = new Ranking();
+    
+            $ranking->fill(array_merge($where, [
+                $type => 1,
+                'created_at' => date('Y-m-d')
+            ]));
+            
+            if(!$ranking->save()){
+                return $this->errorResponse('Oops, an error occurred, try again later.', 400);
+            }
         }
 
         return $this->successResponse(true, 200);

@@ -14,6 +14,10 @@ class RankingTransformer extends TransformerAbstract
      */
     public function transform(Ranking $ranking)
     {
-        return [];
+        return [
+            'hero' => $ranking->hero,
+            'likes' => $ranking->likes,
+            'dont_likes' => $ranking->dont_likes
+        ];
     }
 }
