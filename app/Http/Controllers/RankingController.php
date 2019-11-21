@@ -6,6 +6,12 @@ use App\Ranking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
+/*
+ * @author      Jairo Burgos Guarin
+ * @package     Laravel 5.4
+ * @subpackage  Ranking Controller
+ * @category    Services
+ */
 class RankingController extends ApiController
 {
     public function __construct()
@@ -13,6 +19,11 @@ class RankingController extends ApiController
         $this->middleware('client.credentials');
     }
 
+    /*
+    * @name         index
+    * @return       collection
+    * @description  Lista de heroes con mayor numero de Me Gusta.
+    */
     public function index()
     {
         $data = Ranking::GetRanking()->orderBy('likes', 'desc');
@@ -21,6 +32,11 @@ class RankingController extends ApiController
         return $this->showAll($top);
     }
 
+    /*
+    * @name         store
+    * @return       true, false or error message
+    * @description  Almacenamos Me Gusta y No Me Gusta
+    */
     public function store(Request $request)
     {
         $actions = ['add', 'remove'];
